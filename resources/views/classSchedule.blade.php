@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Class schedule</title>
-    <link rel="stylesheet" href="C:/Users/user/Desktop/Class Schedul Project/Class-Schedule-Board/public/Assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="C:/Users/user/Desktop/Class Schedul Project/Class-Schedule-Board/public/Assets/css/untitled.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
 </head>
 
 <body>
     <div class="row" style="margin-top: 19px;">
-        <div class="col offset-xl-0 text-center"><img src="C:/Users/user/Desktop/Class Schedul Project/Class-Schedule-Board/public/Assets/img/ESQ-Business-School-logo.png" style="width: 130px;"></div>
+        <div class="col offset-xl-0 text-center"><img src="assets/img/ESQ-Business-School-logo.png" style="width: 130px;"></div>
         <div class="col">
             <h2 class="text-center">SELAMAT DATANG DI ESQ BUSINESS SCHOOL</h2>
         </div>
@@ -56,8 +56,8 @@
             </table>
         </div>
     </div>
-    <script src="C:/Users/user/Desktop/Class Schedul Project/Class-Schedule-Board/public/Assets/js/jquery.min.js"></script>
-    <script src="C:/Users/user/Desktop/Class Schedul Project/Class-Schedule-Board/public/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
