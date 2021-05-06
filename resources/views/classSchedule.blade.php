@@ -11,7 +11,7 @@
 
 <body>
     <div class="row" style="margin-top: 19px;">
-        <div class="col offset-xl-0 text-center"><img src="assets/img/ESQ-Business-School-logo.png" style="width: 130px;"></div>
+        <div class="col offset-xl-0 text-center"><img src="http://esqbs.ac.id/wp-content/uploads/2020/09/ESQ-Business-School-logo.png" style="width: 130px;"></div>
         <div class="col">
             <h2 class="text-center">SELAMAT DATANG DI ESQ BUSINESS SCHOOL</h2>
         </div>
