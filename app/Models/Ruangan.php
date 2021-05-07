@@ -9,8 +9,10 @@ class Ruangan extends Model
 {
     use HasFactory;
 
+    protected $table = "ruangan";
+
     public function sesikelas(){
-        return $this->belongsTo(SesiKelas::class);
+        return $this->hasOne(SesiKelas::class);
     }
 
     public function jadwals(){

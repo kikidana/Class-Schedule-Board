@@ -1,0 +1,10 @@
+<tr>
+    <td>{{ $s->jadwal->waktu_mulai }} - {{ $s->jadwal->waktu_selesai }}</td>
+    <td>{{ $s->matakuliah->kode_matakuliah }}</td>
+    <td>{{ $s->matakuliah->nama_matakuliah }}</td>
+    <td>x</td>
+    <td>{{ $s->matakuliah->semester }}</td>
+    <td>{{ $s->ruangan->no_ruangan }}</td>
+    <td>{{ $s->_status->status }}</td>
+</tr>
+

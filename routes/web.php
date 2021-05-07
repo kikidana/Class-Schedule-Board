@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\SesiKelasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', function(){
-    return view('classSchedule');
-});
+Route::get('test_database', [SesiKelasController::class, 'index']);
+
+Route::get('schedule_board', [SesiKelasController::class, 'index']);

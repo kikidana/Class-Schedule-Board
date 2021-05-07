@@ -24,34 +24,27 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>Column 3</th>
-                        <th>Column 3</th>
-                        <th>Column 3</th>
-                        <th>Column 3</th>
-                        <th>Column 3</th>
+                        <th scope="col">Waktu</th>
+                        <th scope="col">Kode</th>
+                        <th scope="col">Nama Matakuliah</th>
+                        <th scope="col">Dosen</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Ruang</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($sesi as $s)  
                     <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
+                        <td>{{ $s->waktu_belajar }}</td>
+                        <td>{{ $s->kode_matakuliah }}</td>
+                        <td>{{ $s->nama_matakuliah }}</td>
+                        <td>{{ $s->dosen_sesi }}</td>
+                        <td>{{ $s->semester }}</td>
+                        <td>{{ $s->no_ruangan }}</td>
+                        <td>{{ $s->status }}</td>
                     </tr>
-                    <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                        <td>Cell 3</td>
-                    </tr>
+                  @endforeach
                 </tbody>
             </table>
         </div>

@@ -9,6 +9,8 @@ class Matakuliah extends Model
 {
     use HasFactory;
 
+    protected $table = "matakuliah";
+
     public function jadwals(){
         return $this->hasMany(Jadwal::class);
     }

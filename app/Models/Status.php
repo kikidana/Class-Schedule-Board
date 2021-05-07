@@ -9,7 +9,9 @@ class Status extends Model
 {
     use HasFactory;
 
+    protected $table = "status";
+
     public function sesikelas(){
-        return $this->belongsTo(SesiKelas::class);
+        return $this->hasMany(SesiKelas::class);
     }
 }

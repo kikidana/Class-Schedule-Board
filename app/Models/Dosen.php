@@ -9,6 +9,8 @@ class Dosen extends Model
 {
     use HasFactory;
 
+    protected $table = "dosen";
+
     public function matakuliahs(){
         return $this->belongsToMany(Matakuliah::class);
     }

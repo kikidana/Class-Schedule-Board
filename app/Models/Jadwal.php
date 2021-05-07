@@ -9,6 +9,8 @@ class Jadwal extends Model
 {
     use HasFactory;
 
+    protected $table = "jadwal";
+
     public function matakuliah(){
         return $this->belongsTo(Matakuliah::class);
     }
