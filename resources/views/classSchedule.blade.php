@@ -16,9 +16,9 @@
             <h2 class="text-center">SELAMAT DATANG DI ESQ BUSINESS SCHOOL</h2>
         </div>
         <div class="col">
-            <h2>RABU 28-04-2021</h2>
+            <h2>{{ $tanggal->hari }}, {{ $tanggal->tanggal }}</h2>
         </div>
-    </div>
+    </div><br>
     <div class="table-bordered">
         <div class="table-responsive">
             <table class="table">
