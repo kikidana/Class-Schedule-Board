@@ -13,10 +13,17 @@ class SesiKelasController extends Controller
     public function index(){
         //$sesi = SesiKelas::with(['matakuliah', '_status', 'ruangan', 'jadwal'])->get();
         $tanggal = $this->getTanggal();
-        //$hari = date('D');
         $sesi = $this->groupConcatSesi();
         //return $sesi;
         return view('classSchedule', ['sesi' => $sesi, 'tanggal' => $tanggal]);
+    }
+
+    public function test(){
+        //$sesi = SesiKelas::with(['matakuliah', '_status', 'ruangan', 'jadwal'])->get();
+        $tanggal = $this->getTanggal();
+        $sesi = $this->groupConcatSesi();
+        //return $sesi;
+        return view('testing', ['sesi' => $sesi, 'tanggal' => $tanggal]);
     }
 
     public function getTanggal(){
@@ -47,7 +54,7 @@ class SesiKelasController extends Controller
                 ->select('sesi_kelas.sesi','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
                         'status.status', 'ruangan.no_ruangan', 'matakuliah.semester','jadwal.hari','sesi_kelas.tanggal',
                         DB::raw('CONCAT(jadwal.waktu_mulai, " - ", jadwal.waktu_selesai) as waktu_belajar'), 
-                        DB::raw('group_concat(dosen.nama_dosen) as dosen_sesi'),
+                        DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_sesi"),
                         )
                 ->where('sesi_kelas.tanggal', $waktu)
                 ->groupBy('sesi_kelas.sesi',
@@ -60,6 +67,7 @@ class SesiKelasController extends Controller
                           'jadwal.hari',
                           'sesi_kelas.tanggal',
                           'matakuliah.semester')
+                ->orderBy('sesi_kelas.id_jadwal')
                 ->get();
 
         return $sesi; 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2021 pada 08.49
+-- Waktu pembuatan: 08 Bulan Mei 2021 pada 08.39
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 8.0.3
 
@@ -1959,7 +1959,8 @@ ALTER TABLE `sesi_kelas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_matkul` (`id_matkul`),
   ADD KEY `id_ruang` (`id_ruang`),
-  ADD KEY `id_status` (`id_status`);
+  ADD KEY `id_status` (`id_status`),
+  ADD KEY `sesi_kelas_ibfk_4` (`id_jadwal`);
 
 --
 -- Indeks untuk tabel `status`
@@ -2030,7 +2031,8 @@ ALTER TABLE `dosen_matkul`
 ALTER TABLE `sesi_kelas`
   ADD CONSTRAINT `sesi_kelas_ibfk_1` FOREIGN KEY (`id_matkul`) REFERENCES `matakuliah` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sesi_kelas_ibfk_2` FOREIGN KEY (`id_ruang`) REFERENCES `ruangan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sesi_kelas_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sesi_kelas_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sesi_kelas_ibfk_4` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

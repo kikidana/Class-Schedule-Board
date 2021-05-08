@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test_database', [SesiKelasController::class, 'index']);
+Route::get('test_database', [SesiKelasController::class, 'test']);
 
 Route::get('schedule_board', [SesiKelasController::class, 'index']);
