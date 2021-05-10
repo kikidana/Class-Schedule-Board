@@ -22,7 +22,7 @@
     </div><br>
     <div class="table-bordered">
         <div class="table-responsive">
-            <table class="table">
+            <table id="tabelsesi" class="table">
                 <thead>
                     <tr>
                         <th scope="col">Waktu</th>
@@ -54,6 +54,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script>src="https://code.jquery.com/jquery-3.5.1.js"</script>
+    <script>
+    $(document).ready(function() {
+        $('tabelsesi').DataTable();
+    } );
+    </script>
 </body>
 
 </html>
