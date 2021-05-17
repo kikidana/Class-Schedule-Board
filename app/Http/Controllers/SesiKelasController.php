@@ -52,7 +52,7 @@ class SesiKelasController extends Controller
                 ->join('ruangan', 'sesi_kelas.id_ruang', '=', 'ruangan.id')
                 ->join('jadwal', 'sesi_kelas.id_jadwal', '=', 'jadwal.id')
                 ->select('sesi_kelas.sesi','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
-                        'status.status', 'ruangan.no_ruangan', 'matakuliah.semester','jadwal.hari','sesi_kelas.tanggal',
+                        'status.status', 'ruangan.no_ruangan', 'matakuliah.semester','jadwal.hari','jadwal.jenis_kelas','sesi_kelas.tanggal',
                         DB::raw('CONCAT(jadwal.waktu_mulai, " - ", jadwal.waktu_selesai) as waktu_belajar'), 
                         DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_sesi"),
                         )
@@ -66,6 +66,7 @@ class SesiKelasController extends Controller
                           'ruangan.no_ruangan',
                           'jadwal.hari',
                           'sesi_kelas.tanggal',
+                          'jadwal.jenis_kelas',
                           'matakuliah.semester')
                 ->orderBy('sesi_kelas.id_jadwal')
                 ->get();

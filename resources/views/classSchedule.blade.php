@@ -30,6 +30,7 @@
                         <th scope="col">Nama Matakuliah</th>
                         <th scope="col">Dosen</th>
                         <th scope="col">Semester</th>
+                        <th scope="col">Jenis Kelas</th>
                         <th scope="col">Ruang</th>
                         <th scope="col">Status</th>
                     </tr>
@@ -42,6 +43,7 @@
                         <td>{{ $s->nama_matakuliah }}</td>
                         <td>{{ $s->dosen_sesi }}</td>
                         <td>{{ $s->semester }}</td>
+                        <td>{{ $s->jenis_kelas }}</td>
                         <td>{{ $s->no_ruangan }}</td>
                         <td>{{ $s->status }}</td>
                     </tr>
