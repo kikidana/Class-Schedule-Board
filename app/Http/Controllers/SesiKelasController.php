@@ -18,6 +18,11 @@ class SesiKelasController extends Controller
         return view('classSchedule', ['sesi' => $sesi, 'tanggal' => $tanggal]);
     }
 
+    public function tableSesi(){
+        $sesi = $this->groupConcatTableSesi();
+        return view('sesiTable', ['sesi' => $sesi]);
+    }
+
     public function test(){
         //$sesi = SesiKelas::with(['matakuliah', '_status', 'ruangan', 'jadwal'])->get();
         $tanggal = $this->getTanggal();
@@ -72,5 +77,34 @@ class SesiKelasController extends Controller
                 ->get();
 
         return $sesi; 
+    }
+
+    public function groupConcatTableSesi(){
+        $waktu = date('Y-m-d');
+        $sesi = DB::table('sesi_kelas')
+                ->join('matakuliah', 'sesi_kelas.id_matkul', '=', 'matakuliah.id')
+                ->join('dosen_matkul', 'matakuliah.id', '=', 'dosen_matkul.id_matkul')
+                ->join('dosen', 'dosen_matkul.id_dosen', '=', 'dosen.id')
+                ->join('status', 'sesi_kelas.id_status', '=', 'status.id')
+                ->join('ruangan', 'sesi_kelas.id_ruang', '=', 'ruangan.id')
+                ->join('jadwal', 'sesi_kelas.id_jadwal', '=', 'jadwal.id')
+                ->select('sesi_kelas.tanggal','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
+                          'matakuliah.semester','jadwal.jenis_kelas','sesi_kelas.sesi',
+                          'ruangan.no_ruangan','status.status',
+                          DB::raw("(GROUP_CONCAT(CONCAT(sesi_kelas.waktu_mulai, ' - ', sesi_kelas.waktu_selesai) SEPARATOR ' | ')) as waktu"),
+                          DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_table_sesi")
+                        )
+                ->groupBy('sesi_kelas.tanggal',
+                          'matakuliah.kode_matakuliah',
+                          'matakuliah.nama_matakuliah',
+                          'matakuliah.semester',
+                          'jadwal.jenis_kelas',
+                          'sesi_kelas.sesi',
+                          'ruangan.no_ruangan',
+                          'status.status')
+                ->orderBy('sesi_kelas.id_jadwal')
+                ->get();
+
+        return $sesi;
     }
 }

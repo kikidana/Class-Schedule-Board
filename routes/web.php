@@ -21,3 +21,9 @@ Route::get('/', function () {
 Route::get('test_database', [SesiKelasController::class, 'test']);
 
 Route::get('schedule_board', [SesiKelasController::class, 'index']);
+
+Route::get('sesi_kelas', [SesiKelasController::class, 'tableSesi']);
+
+Route::get('form_sesi', function(){
+    return view('formSesiKelas');
+});
