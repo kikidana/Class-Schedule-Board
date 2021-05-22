@@ -94,9 +94,8 @@
                                     <label for="ruangan" class="col-sm-2 col-form-label">Ruang</label>
                                     <div class="col-sm-10">
                                         <select name="ruangan" class="form-control">
-                                            <option selected>{{ $formSesi->no_ruangan }}</option>
                                             @foreach($ruangan as $r)
-                                            <option value="{{ $loop->iteration }}">{{ $r->no_ruangan }}</option>
+                                            <option value="{{ $r->id }}" {{ ($r->no_ruangan == $formSesi->no_ruangan)?"selected":"" }}>{{ $r->no_ruangan }}</option>
                                             @endforeach
                                           </select>
                                     </div>
@@ -105,9 +104,8 @@
                                     <label for="status" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" class="form-control">
-                                            <option selected>{{ $formSesi->status }}</option>
                                             @foreach($status as $s)
-                                            <option value="{{ $loop->iteration }}">{{ $s->status }}</option>
+                                            <option value="{{ $s->id}}" {{ ($s->status == $formSesi->status)?"selected":"" }} >{{ $s->status }}</option>
                                             @endforeach
                                           </select>
                                     </div>
@@ -115,7 +113,7 @@
                                 <div class="form-group row">
                                   <label for="inputKeterangan" class="col-sm-2 col-form-label">Keterangan</label>
                                   <div class="col-sm-10">
-                                    <textarea class="form-control" id="inputKeterangan" rows="3"></textarea>
+                                    <textarea class="form-control" name="remark" rows="3">{{ $formSesi->remarks }}</textarea>
                                   </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>

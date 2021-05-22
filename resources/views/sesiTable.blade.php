@@ -34,6 +34,7 @@
                         <th scope="col">Sesi Kelas</th>
                         <th scope="col">Ruang</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Keterangan</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -50,6 +51,7 @@
                         <td>{{ $s->sesi }}</td>
                         <td>{{ $s->no_ruangan }}</td>
                         <td>{{ $s->status }}</td>
+                        <td>{{ $s->remarks }}</td>
                         <td>
                             <a href="{{ route('sesiKelas.edit', $s->id) }}" class="btn btn-warning btn-sm active">Edit</a>
                         </td>

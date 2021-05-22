@@ -40,8 +40,10 @@ class SesiKelasController extends Controller
         $formSesi->waktu_selesai = $request->waktu_selesai;
         $formSesi->id_status = $request->status;
         $formSesi->id_ruang = $request->ruangan;
+        $formSesi->remarks = $request->remark;
         $formSesi->save();
 
+        //return $request;
         return redirect('sesi_kelas');
     }
 
@@ -112,11 +114,12 @@ class SesiKelasController extends Controller
                 ->join('jadwal', 'sesi_kelas.id_jadwal', '=', 'jadwal.id')
                 ->select('sesi_kelas.id','sesi_kelas.tanggal','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
                           'matakuliah.semester','jadwal.jenis_kelas','sesi_kelas.sesi',
-                          'ruangan.no_ruangan','status.status',
+                          'ruangan.no_ruangan','status.status','sesi_kelas.remarks',
                           DB::raw('CONCAT(sesi_kelas.waktu_mulai, " - ", sesi_kelas.waktu_selesai) as waktu'),
                           DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_table_sesi"),
                         )
                 ->groupBy('sesi_kelas.id',
+                          'sesi_kelas.remarks',
                           'sesi_kelas.tanggal',
                           'matakuliah.kode_matakuliah',
                           'matakuliah.nama_matakuliah',
@@ -144,11 +147,12 @@ class SesiKelasController extends Controller
                 ->select('sesi_kelas.id','sesi_kelas.tanggal','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
                           'matakuliah.semester','jadwal.jenis_kelas','sesi_kelas.sesi',
                           'ruangan.no_ruangan','status.status','sesi_kelas.waktu_mulai',
-                          'sesi_kelas.waktu_selesai',
+                          'sesi_kelas.waktu_selesai','sesi_kelas.remarks',
                           DB::raw('CONCAT(sesi_kelas.waktu_mulai, " - ", sesi_kelas.waktu_selesai) as waktu'),
                           DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_table_sesi"),
                         )
                 ->groupBy('sesi_kelas.id',
+                          'sesi_kelas.remarks',
                           'sesi_kelas.tanggal',
                           'matakuliah.kode_matakuliah',
                           'matakuliah.nama_matakuliah',
