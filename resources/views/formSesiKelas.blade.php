@@ -38,70 +38,77 @@
                         </div>
                         <div class="col-10 text-center">
                             <br><br>
-                            <form>
+                            <form method="post" action="{{ route('sesiKelas.update', $formSesi->id) }}">
+                              {{ csrf_field() }}
+                              {{ method_field('PUT') }}
+
                                 <div class="form-group row">
                                   <label for="kodeMatkul_namaMatkul" class="col-sm-2 col-form-label">Kode - Nama Mata Kuliah</label>
                                   <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="kode_matkul-nama_matkul" value="KBMT308 - Statistika R">
+                                    <input type="text" readonly class="form-control-plaintext" name="kode_namaMatkul" value="{{ $formSesi->kode_matakuliah }} - {{ $formSesi->nama_matakuliah }}">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="semester" class="col-sm-2 col-form-label">Semester</label>
                                     <div class="col-sm-10">
-                                      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="6,8 BIS">
+                                      <input type="text" readonly class="form-control-plaintext" name="semester" value="{{ $formSesi->semester }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="semester" class="col-sm-2 col-form-label">Jenis Kelas</label>
+                                    <label for="jenisKelas" class="col-sm-2 col-form-label">Jenis Kelas</label>
                                     <div class="col-sm-10">
-                                      <input type="text" readonly class="form-control-plaintext" id="jenis_kelas" value="Teori">
+                                      <input type="text" readonly class="form-control-plaintext" name="jenis_kelas" value="{{ $formSesi->jenis_kelas }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="semester" class="col-sm-2 col-form-label">Dosen</label>
+                                    <label for="dosen" class="col-sm-2 col-form-label">Dosen</label>
                                     <div class="col-sm-10">
-                                      <input type="text" readonly class="form-control-plaintext" id="nama_dosen" value="Abdul Barir / Danang Indrajaya">
+                                      <input type="text" readonly class="form-control-plaintext" name="nama_dosen" value="{{ $formSesi->dosen_table_sesi }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="semester" class="col-sm-2 col-form-label">Tanggal</label>
+                                    <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
                                     <div class="col-sm-10">
-                                      <input type="text" readonly class="form-control-plaintext" id="tanggal" value="17-05-2021">
+                                      <input type="text" readonly class="form-control-plaintext" name="tanggal" value="{{ $formSesi->tanggal }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="semester" class="col-sm-2 col-form-label">Sesi</label>
+                                    <label for="sesi" class="col-sm-2 col-form-label">Sesi</label>
                                     <div class="col-sm-10">
-                                      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Ke - 14">
+                                      <input type="text" readonly class="form-control-plaintext" name="sesi" value="Ke - {{ $formSesi->sesi }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="semester" class="col-sm-2 col-form-label">Waktu</label>
                                     <div class="col-sm-4">
-                                        <input id="waktu_awal" width="276" />
+                                        <input id="waktu_awal" name="waktu_mulai" width="276" value="{{ $formSesi->waktu_mulai }}"/>
                                     </div>
                                     <div class="col-sm-2 text-center">
                                         s/d
                                     </div>
                                     <div class="col-sm-4">
-                                        <input id="waktu_akhir" width="276" />
+                                        <input id="waktu_akhir" name="waktu_selesai" width="276" value="{{ $formSesi->waktu_selesai }}"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="semester" class="col-sm-2 col-form-label">Ruang</label>
+                                    <label for="ruangan" class="col-sm-2 col-form-label">Ruang</label>
                                     <div class="col-sm-10">
-                                        <select id="inputRuang" class="form-control">
-                                            <option selected>L.1801</option>
-                                            <option>...</option>
+                                        <select name="ruangan" class="form-control">
+                                            <option selected>{{ $formSesi->no_ruangan }}</option>
+                                            @foreach($ruangan as $r)
+                                            <option value="{{ $loop->iteration }}">{{ $r->no_ruangan }}</option>
+                                            @endforeach
                                           </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="semester" class="col-sm-2 col-form-label">Status</label>
+                                    <label for="status" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
-                                        <select id="inputRuang" class="form-control">
-                                            <option selected>On Schedule</option>
-                                            <option>...</option>
+                                        <select name="status" class="form-control">
+                                            <option selected>{{ $formSesi->status }}</option>
+                                            @foreach($status as $s)
+                                            <option value="{{ $loop->iteration }}">{{ $s->status }}</option>
+                                            @endforeach
                                           </select>
                                     </div>
                                 </div>
@@ -111,7 +118,8 @@
                                     <textarea class="form-control" id="inputKeterangan" rows="3"></textarea>
                                   </div>
                                 </div>
-                            </form>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form><br>
                         </div>
                         <div class="col-1">
 
@@ -124,7 +132,7 @@
             
           </div>
         </div>
-      </div>
+      </div><br><br><br>
     
     <script>
         $('#waktu_awal').timepicker({

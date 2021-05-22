@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SesiKelas;
 use App\Models\Jadwal;
+use App\Models\Ruangan;
+use App\Models\Status;
 use Carbon\Carbon;
 use DB;
 
@@ -21,6 +23,26 @@ class SesiKelasController extends Controller
     public function tableSesi(){
         $sesi = $this->groupConcatTableSesi();
         return view('sesiTable', ['sesi' => $sesi]);
+    }
+
+    public function edit($id){
+        $formSesi = $this->findTableSesi($id);
+        $ruangan = Ruangan::all();
+        $status = Status::all();
+        //return $formSesi;
+        return view('formSesiKelas', ['formSesi' => $formSesi, 'ruangan' => $ruangan, 'status' => $status]);
+    }
+
+    public function update($id, Request $request){
+        $formSesi = SesiKelas::find($id);
+        
+        $formSesi->waktu_mulai = $request->waktu_mulai;
+        $formSesi->waktu_selesai = $request->waktu_selesai;
+        $formSesi->id_status = $request->status;
+        $formSesi->id_ruang = $request->ruangan;
+        $formSesi->save();
+
+        return redirect('sesi_kelas');
     }
 
     public function test(){
@@ -88,17 +110,20 @@ class SesiKelasController extends Controller
                 ->join('status', 'sesi_kelas.id_status', '=', 'status.id')
                 ->join('ruangan', 'sesi_kelas.id_ruang', '=', 'ruangan.id')
                 ->join('jadwal', 'sesi_kelas.id_jadwal', '=', 'jadwal.id')
-                ->select('sesi_kelas.tanggal','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
+                ->select('sesi_kelas.id','sesi_kelas.tanggal','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
                           'matakuliah.semester','jadwal.jenis_kelas','sesi_kelas.sesi',
                           'ruangan.no_ruangan','status.status',
-                          DB::raw("(GROUP_CONCAT(CONCAT(sesi_kelas.waktu_mulai, ' - ', sesi_kelas.waktu_selesai) SEPARATOR ' | ')) as waktu"),
-                          DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_table_sesi")
+                          DB::raw('CONCAT(sesi_kelas.waktu_mulai, " - ", sesi_kelas.waktu_selesai) as waktu'),
+                          DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_table_sesi"),
                         )
-                ->groupBy('sesi_kelas.tanggal',
+                ->groupBy('sesi_kelas.id',
+                          'sesi_kelas.tanggal',
                           'matakuliah.kode_matakuliah',
                           'matakuliah.nama_matakuliah',
                           'matakuliah.semester',
                           'jadwal.jenis_kelas',
+                          'sesi_kelas.waktu_mulai',
+                          'sesi_kelas.waktu_selesai',
                           'sesi_kelas.sesi',
                           'ruangan.no_ruangan',
                           'status.status')
@@ -106,5 +131,38 @@ class SesiKelasController extends Controller
                 ->get();
 
         return $sesi;
+    }
+
+    public function findTableSesi($id){
+        $sesi = DB::table('sesi_kelas')
+                ->join('matakuliah', 'sesi_kelas.id_matkul', '=', 'matakuliah.id')
+                ->join('dosen_matkul', 'matakuliah.id', '=', 'dosen_matkul.id_matkul')
+                ->join('dosen', 'dosen_matkul.id_dosen', '=', 'dosen.id')
+                ->join('status', 'sesi_kelas.id_status', '=', 'status.id')
+                ->join('ruangan', 'sesi_kelas.id_ruang', '=', 'ruangan.id')
+                ->join('jadwal', 'sesi_kelas.id_jadwal', '=', 'jadwal.id')
+                ->select('sesi_kelas.id','sesi_kelas.tanggal','matakuliah.kode_matakuliah','matakuliah.nama_matakuliah',
+                          'matakuliah.semester','jadwal.jenis_kelas','sesi_kelas.sesi',
+                          'ruangan.no_ruangan','status.status','sesi_kelas.waktu_mulai',
+                          'sesi_kelas.waktu_selesai',
+                          DB::raw('CONCAT(sesi_kelas.waktu_mulai, " - ", sesi_kelas.waktu_selesai) as waktu'),
+                          DB::raw("(GROUP_CONCAT(dosen.nama_dosen SEPARATOR '/')) as dosen_table_sesi"),
+                        )
+                ->groupBy('sesi_kelas.id',
+                          'sesi_kelas.tanggal',
+                          'matakuliah.kode_matakuliah',
+                          'matakuliah.nama_matakuliah',
+                          'matakuliah.semester',
+                          'jadwal.jenis_kelas',
+                          'sesi_kelas.waktu_mulai',
+                          'sesi_kelas.waktu_selesai',
+                          'sesi_kelas.sesi',
+                          'ruangan.no_ruangan',
+                          'status.status')
+                ->orderBy('sesi_kelas.id_jadwal')
+                ->where('sesi_kelas.id', $id)
+                ->get();
+
+        return $sesi[0];
     }
 }

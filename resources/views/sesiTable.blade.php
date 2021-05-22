@@ -51,7 +51,7 @@
                         <td>{{ $s->no_ruangan }}</td>
                         <td>{{ $s->status }}</td>
                         <td>
-                            <a href="#" class="btn btn-warning btn-sm active" role="button">Edit</a>
+                            <a href="{{ route('sesiKelas.edit', $s->id) }}" class="btn btn-warning btn-sm active">Edit</a>
                         </td>
                     </tr>
                   @endforeach

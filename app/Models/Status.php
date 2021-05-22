@@ -11,6 +11,8 @@ class Status extends Model
 
     protected $table = "status";
 
+    protected $fillable = ['status'];
+
     public function sesikelas(){
         return $this->hasMany(SesiKelas::class);
     }

@@ -11,6 +11,8 @@ class Ruangan extends Model
 
     protected $table = "ruangan";
 
+    protected $fillable = ['no_ruangan'];
+
     public function sesikelas(){
         return $this->hasOne(SesiKelas::class);
     }

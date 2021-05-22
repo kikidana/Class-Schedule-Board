@@ -24,6 +24,10 @@ Route::get('schedule_board', [SesiKelasController::class, 'index']);
 
 Route::get('sesi_kelas', [SesiKelasController::class, 'tableSesi']);
 
+Route::get('sesi_kelas/{id}/edit', [SesiKelasController::class, 'edit'])->name('sesiKelas.edit');
+
+Route::put('sesi_kelas/{id}', [SesiKelasController::class, 'update'])->name('sesiKelas.update');
+
 Route::get('form_sesi', function(){
     return view('formSesiKelas');
 });
