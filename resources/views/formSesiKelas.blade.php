@@ -81,13 +81,13 @@
                                 <div class="form-group row">
                                     <label for="semester" class="col-sm-2 col-form-label">Waktu</label>
                                     <div class="col-sm-4">
-                                        <input id="waktu_awal" name="waktu_mulai" width="276" value="{{ $formSesi->waktu_mulai }}"/>
+                                        <input required id="waktu_awal" name="waktu_mulai" width="276" value="{{ $formSesi->waktu_mulai }}"/>
                                     </div>
                                     <div class="col-sm-2 text-center">
                                         s/d
                                     </div>
                                     <div class="col-sm-4">
-                                        <input id="waktu_akhir" name="waktu_selesai" width="276" value="{{ $formSesi->waktu_selesai }}"/>
+                                        <input required id="waktu_akhir" name="waktu_selesai" width="276" value="{{ $formSesi->waktu_selesai }}"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -113,7 +113,7 @@
                                 <div class="form-group row">
                                   <label for="inputKeterangan" class="col-sm-2 col-form-label">Keterangan</label>
                                   <div class="col-sm-10">
-                                    <textarea class="form-control" name="remark" rows="3">{{ $formSesi->remarks }}</textarea>
+                                    <textarea required class="form-control" name="remark" rows="3">{{ $formSesi->remarks }}</textarea>
                                   </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>

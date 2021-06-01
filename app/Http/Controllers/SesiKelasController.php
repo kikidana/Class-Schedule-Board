@@ -14,10 +14,12 @@ class SesiKelasController extends Controller
 {
     public function index(){
         //$sesi = SesiKelas::with(['matakuliah', '_status', 'ruangan', 'jadwal'])->get();
+        date_default_timezone_set('Asia/Jakarta');
         $tanggal = $this->getTanggal();
         $sesi = $this->groupConcatSesi();
+        $waktu = date('H:i:s');
         //return $sesi;
-        return view('classSchedule', ['sesi' => $sesi, 'tanggal' => $tanggal]);
+        return view('classSchedule', ['sesi' => $sesi, 'tanggal' => $tanggal, 'waktu' => $waktu]);
     }
 
     public function tableSesi(){
