@@ -70,19 +70,8 @@
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($sesi as $s)  
-                    <tr>
-                        <td>{{ $s->waktu_belajar }}</td>
-                        <td>{{ $s->kode_matakuliah }}</td>
-                        <td>{{ $s->nama_matakuliah }}</td>
-                        <td>{{ $s->dosen_sesi }}</td>
-                        <td>{{ $s->semester }}</td>
-                        <td>{{ $s->jenis_kelas }}</td>
-                        <td>{{ $s->no_ruangan }}</td>
-                        <td>{{ $s->status }}</td>
-                    </tr>
-                  @endforeach
+                <tbody id="sesi">
+                    
                 </tbody>
             </table>
         </div>
@@ -96,7 +85,53 @@
         $('#tabelsesi').DataTable({
             "order" : []
         });
-    } );
+
+        mulai();
+
+        $('#sesi').change(ubahStatus);
+    });
+
+    function mulai(){
+        $('#sesi').empty();
+        $.ajax({
+            url: "{{ route('schedule.sesi') }}",
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                data.sesi.forEach(element => {
+                    var sesi_bodi = '<tr>'+
+                                        '<td>'+ element.waktu_belajar +'</td>'+
+                                        '<td>'+ element.kode_matakuliah +'</td>'+
+                                        '<td>'+ element.nama_matakuliah +'</td>'+
+                                        '<td>'+ element.dosen_sesi +'</td>'+
+                                        '<td>'+ element.semester +'</td>'+
+                                        '<td>'+ element.jenis_kelas +'</td>'+
+                                        '<td>'+ element.no_ruangan +'</td>'+
+                                        '<td>'+ element.status +'</td>'+
+                                    '</tr>';
+                    $('#sesi').append(sesi_bodi);  
+                });        
+                
+            }
+        })
+    }
+
+    function ubahStatus(){
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+        $.ajax({
+            url: "{{ route('schedule.sesi') }}",
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                if(data.sesi){
+
+                }
+            }
+        });
+    }
     </script>
 </body>
 

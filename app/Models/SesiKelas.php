@@ -13,7 +13,7 @@ class SesiKelas extends Model
 
     protected $table = "sesi_kelas";
 
-    protected $fillable = ['waktu_mulai', 'waktu_selesai', 'remarks'];
+    protected $fillable = ['id_status','id_jadwal', 'id_matkul', 'id_ruang', 'jenis_kelas', 'sesi', 'waktu_mulai', 'waktu_selesai', 'tanggal', 'remarks'];
 
     public function ruangan(){
         return $this->belongsTo(Ruangan::class, 'id_ruang');

@@ -17,9 +17,22 @@ class SesiKelasController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = $this->getTanggal();
         $sesi = $this->groupConcatSesi();
+        //$sesi = SesiKelas::all();
         $waktu = date('H:i:s');
-        //return $sesi;
+        //return $tanggal;
         return view('classSchedule', ['sesi' => $sesi, 'tanggal' => $tanggal, 'waktu' => $waktu]);
+    }
+
+    public function getSesi(){
+        $sesi = $this->groupConcatSesi();
+
+        return response()->json(['status' => TRUE, 'sesi' => $sesi]);
+    }
+
+    public function getStatus(){
+        $status = Status::all();
+
+        return response()->json($status);
     }
 
     public function tableSesi(){

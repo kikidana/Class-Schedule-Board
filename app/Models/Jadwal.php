@@ -11,6 +11,8 @@ class Jadwal extends Model
 
     protected $table = "jadwal";
 
+    protected $fillable = ['id_matkul', 'id_ruang', 'hari', 'jenis_kelas', 'waktu_mulai', 'waktu_selesai', 'tanggal_mulai'];
+
     public function matakuliah(){
         return $this->belongsTo(Matakuliah::class);
     }

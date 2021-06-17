@@ -105,7 +105,7 @@
                                     <div class="col-sm-10">
                                         <select name="status" class="form-control">
                                             @foreach($status as $s)
-                                            <option value="{{ $s->id}}" {{ ($s->status == $formSesi->status)?"selected":"" }} >{{ $s->status }}</option>
+                                              <option value="{{ $s->id}}" {{ ($s->status == $formSesi->status)?"selected":"" }} >{{ $s->status }}</option>
                                             @endforeach
                                           </select>
                                     </div>
