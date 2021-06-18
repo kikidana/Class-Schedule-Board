@@ -71,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody id="sesi">
-                    
+                   
                 </tbody>
             </table>
         </div>
@@ -88,7 +88,7 @@
 
         mulai();
 
-        $('#sesi').change(ubahStatus);
+        //$('#sesi').change(ubahStatus);
     });
 
     function mulai(){
@@ -111,13 +111,12 @@
                                         '<td>'+ element.status +'</td>'+
                                     '</tr>';
                     $('#sesi').append(sesi_bodi);  
-                });        
-                
+                });          
             }
         })
     }
 
-    function ubahStatus(){
+    /*function ubahStatus(){
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
@@ -131,7 +130,7 @@
                 }
             }
         });
-    }
+    }*/
     </script>
 </body>
 

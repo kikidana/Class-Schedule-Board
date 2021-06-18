@@ -32,7 +32,7 @@ Route::post('tambahMatakuliah', [TestAjaxController::class, 'addMatakuliah'])->n
 
 Route::get('schedule_board', [SesiKelasController::class, 'index']);
 Route::get('get_sesi', [SesiKelasController::class, 'getSesi'])->name('schedule.sesi');
-Route::get('get_status', [SesiKelasController::class, 'getStatus'])->name('schedule.status');
+//Route::get('get_status', [SesiKelasController::class, 'getStatus'])->name('schedule.status');
 
 Route::get('sesi_kelas', [SesiKelasController::class, 'tableSesi']);
 
